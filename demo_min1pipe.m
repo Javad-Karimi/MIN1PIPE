@@ -75,7 +75,7 @@ v.Quality = 100;
 open(v)
 
 %%% compute batch %%%
-ttype = class(mraw.frame_all(1, 1, 1));
+ttype = class(mraw.frame_allt(1, 1, 1));
 stype = parse_type(ttype);
 dss = 2;
 dst = 2;
@@ -90,10 +90,13 @@ nbatch = length(idbatch) - 1;
 figure(2)
 set(gcf, 'Units', 'normalized', 'position', [0.5, 0.1, 0.4, 0.2])
 for ii = 1: nbatch
-    dataraw = mraw.frame_all(1: dss: pixh, 1: dss: pixw, idbatch(ii): idbatch(ii + 1) - 1);
-    datareg = mreg.reg(1: dss: pixh, 1: dss: pixw, idbatch(ii): idbatch(ii + 1) - 1);
+    % dataraw = mraw.frame_allt(1: dss: pixh, 1: dss: pixw, idbatch(ii): idbatch(ii + 1) - 1);
+    % datareg = mreg.reg(1: dss: pixh, 1: dss: pixw, idbatch(ii): idbatch(ii + 1) - 1);
+    dataraw = mraw.frame_allt(:, :, idbatch(ii): idbatch(ii + 1) - 1);
+    datareg = mreg.reg(:, :, idbatch(ii): idbatch(ii + 1) - 1);
+
     datar = reshape(roifn * sigfn(:, idbatch(ii): idbatch(ii + 1) - 1), pixh, pixw, []);
-    datar = datar(1: dss: end, 1: dss: end, :);
+    % datar = datar(1: dss: end, 1: dss: end, :);
     for i = 1: dst: size(dataraw, 3)
         clf
         subplot(1, 3, 1, 'align')
@@ -114,7 +117,7 @@ for ii = 1: nbatch
         axis square
         title('Processed')
         
-        suptitle(['Frame #', num2str(i)])
+        subtitle(['Frame #', num2str(i)])
         
         movtmp = getframe(gcf);
         writeVideo(v, movtmp);

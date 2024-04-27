@@ -5,7 +5,8 @@ function [A, C, iduse, datasmthf, cutofff, pkcutofff] = refine_roi(m, C, f, Aold
 
     hroi = tic;
     if isempty(gcp('nocreate'))
-        parpool(feature('numCores'));
+        % parpool(feature('numCores'));
+        parpool;
     end
     
     %% initialization %%
