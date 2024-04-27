@@ -20,7 +20,8 @@ function [m_out, pixh, pixw] = downsamp_unit(m_in, spatialr, ttype)
 
     %% downsampling %%
     if isempty(gcp('nocreate'))
-        parpool(feature('numCores'));
+        % parpool(feature('numCores'));
+         parpool;
     end
     
     pixht = round(pixh * spatialr);
