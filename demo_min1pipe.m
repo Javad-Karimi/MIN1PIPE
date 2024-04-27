@@ -19,28 +19,29 @@ load(fname)
 figure(1)
 clf
 %%% raw max %%%
-subplot(2, 3, 1, 'align')
+ax1 = subplot(2, 3, 1, 'align');
 imagesc(imaxn)
 axis square
 title('Raw')
-
+colormap('gray');
 %%% neural enhanced before movement correction %%%
-subplot(2, 3, 2, 'align')
+ax2 = subplot(2, 3, 2, 'align');
 imagesc(imaxy)
 axis square
 title('Before MC')
 
 %%% neural enhanced after movement correction %%%
-subplot(2, 3, 3, 'align')
+ax3 = subplot(2, 3, 3, 'align');
 imagesc(imax)
 axis square
 title('After MC')
 
 %%% contour %%%
-subplot(2, 3, 4, 'align')
+ax4 = subplot(2, 3, 4, 'align');
 plot_contour(roifn, sigfn, seedsfn, imax, pixh, pixw)
 axis square
 
+linkaxes([ax2,ax3,ax4], 'xy');
 %%% movement measurement %%%
 subplot(2, 3, 5, 'align')
 axis off
