@@ -18,7 +18,8 @@ function Ydebg = bg_remove(Y, sz, ispara)
     %%% prepare parallel computing %%%
     if ispara
         if isempty(gcp('nocreate'))
-            parpool(feature('numCores'));
+            % parpool(feature('numCores'));
+            parpool;
         end
     end
     

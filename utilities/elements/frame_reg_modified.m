@@ -1,4 +1,4 @@
-function [m, acorrf, acorr, scl, imax] = frame_reg(m, imaxn, se, Fs, pixs, scl, sigma_x, sigma_f, sigma_d)
+function [m, acorrf, acorr, scl, imax] = frame_reg_modified(m, imaxn, se, Fs, pixs, scl, sigma_x, sigma_f, sigma_d)
 % register movies with the hierarchical movement correction
 %   Jinghao Lu, 09/01/2017
 
@@ -51,7 +51,7 @@ function [m, acorrf, acorr, scl, imax] = frame_reg(m, imaxn, se, Fs, pixs, scl, 
         
     %%% preprocess Y first %%%
     dthres = 0.1;
-    mskpre = dominant_patch(imaxn, dthres);
+    % mskpre = dominant_patch(imaxn, dthres);
     knl = fspecial('gaussian', [pixh, pixw], min(pixh, pixw) / 4);
     maxallc = normalize(imaxn .* knl);
     maskc = normalize(imgaussfilt(feature2_comp(maxallc, 0, 100, 5), 100 * size(maxallc) / max(size(maxallc)))) > 0.4;
@@ -63,7 +63,7 @@ function [m, acorrf, acorr, scl, imax] = frame_reg(m, imaxn, se, Fs, pixs, scl, 
     idbatch = [1: ebatch: nf, nf + 1];
     nbatch = length(idbatch) - 1;
     for i = 1: nbatch
-        tmp = m.reg(1: pixh, 1: pixw, idbatch(i): idbatch(i + 1) - 1) .* mskpre;
+        tmp = m.reg(1: pixh, 1: pixw, idbatch(i): idbatch(i + 1) - 1);
         m.reg(1: pixh, 1: pixw, idbatch(i): idbatch(i + 1) - 1) = tmp;
     end
 
