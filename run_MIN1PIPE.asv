@@ -2,11 +2,10 @@ clear
 clc
 
 % addpath(genpath('C:\Users\Javad\Documents\MATLAB\MIN1PIPE\'));
-files_path = 'c:\Users\Javad\Data\cue_reset_experiment\cue_rotation_0_0_0_120sec\QL-RSC-16\2024_05_02\19_23_41\Miniscope\';
-ismc = true;
+files_pathismc = true;
 flag = 1;
 Fsi = 30;
-Fsi_new = 30;
+Fsi_new = 30;c:\Users\Javad\Data\cue_reset_experiment\cue_rotation_0_0_0_120sec\QL-RSC-4\2024_05_02\18_36_07\Miniscope\
 spatialr = 0.5;
 se = 5;
 %%
@@ -19,7 +18,7 @@ AVI2TIFF(files_path,'concat');
 toc
 %%
 tic; 
-[file_name_to_save, filename_raw, filename_reg] = min1pipe(files_path, Fsi, Fsi_new, spatialr, se, ismc, flag); 
+[file_name_to_save, filename_raw, filename_reg] = min1pipe(Fsi, Fsi_new, spatialr, se, ismc, flag); 
 toc;
 %% plot some images %%
 % load(file_name_to_save)

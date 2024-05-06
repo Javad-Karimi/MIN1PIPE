@@ -65,7 +65,8 @@ function [file_name_to_save, filename_raw, filename_reg] = min1pipe(files_path, 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     %% get dataset info %%
-    [path_name, file_base, file_fmt] = data_info(files_path);
+    [path_name, file_base, file_fmt] = data_info;
+    files_path;
     hpipe = tic;
     for i = 1: length(file_base)
         %%% judge whether do the processing %%%

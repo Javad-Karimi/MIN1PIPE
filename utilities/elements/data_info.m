@@ -1,9 +1,12 @@
-function [path_name, file_base, file_fmt] = data_info
+function [path_name, file_base, file_fmt] = data_info(files_path)
 % Select datasets to process
 %   Jinghao Lu 01/12/2016
 
 %     [file_name_tmp, path_name] = uigetfile({'*.tif'; '*.tiff'; '*.avi'}, 'Select coordinates file', 'MultiSelect', 'on');
-    [file_name_tmp, path_name] = uigetfile('*', 'Select imaging file', 'MultiSelect', 'on');
+    % [file_name_tmp, path_name] = uigetfile('*', 'Select imaging file', 'MultiSelect', 'on');
+    path_name = files_path;
+    file_name_tmp = struct2cell(dir(files_path));
+    file_name_tmp = file_name_tmp(1,3:end);
     if ~iscell(file_name_tmp)
         file_name{1} = file_name_tmp;
     else
